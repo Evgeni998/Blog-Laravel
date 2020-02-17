@@ -17,7 +17,8 @@ class PostsController extends Controller
   
     //Reference the form from here and store the results in  storeArticle(Request $request) function
     public function createArticle() {
-        return view('createArticle');
+        $categories = Categories::all();
+        return view('createArticle')->with('categories', $categories);
     }
 
     public function updateArticle(Request $request, $id) {
@@ -43,7 +44,8 @@ class PostsController extends Controller
 
     public function editArticle($id) {
         $article = Articles::find($id);
-        return view('editArticle')->with('article', $article);
+        $categories = Categories::all();
+        return view('editArticle')->with('article', $article)->with('categories',$categories);
     }
 
     public function deleteArticle($id) {
@@ -84,7 +86,7 @@ class PostsController extends Controller
         $article->title = $request->input('title');
         $article->text = $request->input('text');
         $article->keywords = $request->input('keywords');
-        $article->category_id = $request->input('category_id');
+        $article->category_id = $request->category_id;
         
         $article->save();
         return redirect('/articles');

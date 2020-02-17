@@ -10,7 +10,12 @@
         </div>
         <div class = "form-group container">
             {{Form::label('category_id', 'Category')}}
-            {{Form::text('category_id', $article->category_id, ['class' => 'form-control', 'placeholder'=>'Category Number'])}}
+             <select class = "form-control" name = "category_id">
+                @foreach ($categories as $category)
+                    <option value = {{$category->c_id}}>{{$category->category_title}}</option>                    
+                @endforeach
+              
+           </select>
         </div>
         <div class = "form-group container">
             {{Form::label('keywords', 'Key Words')}}
