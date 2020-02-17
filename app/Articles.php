@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Articles extends Model
 {
-    //
+    public function categories() {
+        $this->belongsTo('App\Categories');
+    }
 }
